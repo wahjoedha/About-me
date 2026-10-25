@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me — Scrapbook Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5eddd;
+      --paper: #fffefa;
+      --blue: #075bbb;
+      --deep-blue: #173d9b;
+      --ribbon: #1745a5;
+      --yellow: #fff066;
+      --ink: #252a32;
+      --muted: #73777b;
+      --scale-font: 1cqw;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 17% 15%, rgba(255,255,255,.7), transparent 34%),
+        radial-gradient(ellipse at 84% 68%, rgba(226,211,179,.22), transparent 35%),
+        repeating-linear-gradient(3deg, rgba(112,91,55,.018) 0 1px, transparent 1px 5px),
+        repeating-linear-gradient(93deg, rgba(112,91,55,.015) 0 1px, transparent 1px 7px),
+        var(--cream);
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .portfolio {
+      position: relative;
+      isolation: isolate;
+      container-type: inline-size;
+      width: min(100%, 1024px);
+      aspect-ratio: 1024 / 1448;
+      margin: 0 auto;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.24), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(120,97,63,.014) 0 1px, transparent 1px 4px);
+    }
+
+    .portfolio::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 1.2% 1.5%;
+      opacity: .36;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(92,74,45,.16) .45px, transparent .65px);
+      background-size: 5px 5px;
+    }
+
+    .heading-font { font-family: 'Montserrat', sans-serif; }
+    .script-font { font-family: 'Caveat', cursive; }
+
+    /* Top-left blue lanyard and badge hardware */
+    .lanyard-loop {
+      position: absolute;
+      z-index: 3;
+      left: -3.4%; top: -4.2%;
+      width: 14%; height: 11%;
+      border: 2.2cqw solid #0860bd;
+      border-left-color: #1680e4;
+      border-bottom-color: #004a9f;
+      border-radius: 50%;
+      transform: rotate(-36deg);
+      filter: drop-shadow(1px 2px 1px rgba(0,0,0,.26));
+    }
+    .lanyard-strap {
+      position: absolute;
+      z-index: 4;
+      left: 13.3%; top: -3.2%;
+      width: 6.4%; height: 10%;
+      background: linear-gradient(90deg, #00478f, #1682df 42%, #0757ae 77%, #003f86);
+      transform: rotate(-16deg);
+      border-radius: 0 0 7px 7px;
+      box-shadow: inset 2px 0 3px rgba(255,255,255,.22), 2px 2px 3px #0003;
+    }
+    .lanyard-strap::after {
+      content: "";
+      position: absolute;
+      bottom: -15%; left: 27%; width: 44%; height: 22%;
+      border: 1px solid #a9afb4;
+      background: linear-gradient(#eee, #777, #f6f6f6);
+      border-radius: 50%;
+    }
+    .metal-hook {
+      position: absolute;
+      z-index: 7;
+      left: 14.4%; top: 4.1%;
+      width: 5.6%; height: 7.6%;
+      border: .55cqw solid #a8aaab;
+      border-right-color: #f7f7f7;
+      border-bottom-color: #73777a;
+      border-radius: 48% 40% 52% 52%;
+      transform: rotate(-15deg);
+      filter: drop-shadow(1px 2px 1px #0004);
+    }
+    .metal-hook::before {
+      content: ""; position: absolute; left: 27%; top: 28%;
+      width: 42%; height: 39%; border: .3cqw solid #c5c7c8;
+      border-radius: 50%; background: #f6f2e9;
+    }
+    .metal-hook::after {
+      content: ""; position: absolute; right: -11%; bottom: -14%;
+      width: 32%; height: 47%; border-right: .38cqw solid #8b8d8e;
+      border-bottom: .38cqw solid #dadada; border-radius: 0 0 70% 0;
+    }
+
+    .id-card {
+      position: absolute;
+      z-index: 2;
+      left: 6.2%; top: 8.0%;
+      width: 33.2%; height: 33.2%;
+      padding: 1.2% 1.3% 2%;
+      border: .55cqw solid rgba(205,207,208,.82);
+      border-radius: 2.2cqw;
+      transform: rotate(-5.2deg);
+      background: linear-gradient(115deg, rgba(255,255,255,.91), rgba(226,228,229,.87) 42%, rgba(255,255,255,.92));
+      box-shadow: 0 1.1cqw 2.2cqw rgba(54,45,31,.25), inset 0 0 .45cqw #fff;
+    }
+    .id-card::before {
+      content: ""; position: absolute; inset: 1.6%; border: 1px solid #d7d7d7;
+      border-radius: 1.3cqw; pointer-events: none;
+    }
+    .id-top {
+      height: 19%; margin: -1% -1% 2%;
+      display: flex; justify-content: center; align-items: center;
+      border-bottom: 1px solid #d0d0d0;
+      background: linear-gradient(#f9f9f9, #ececec);
+      border-radius: 1.5cqw 1.5cqw 0 0;
+    }
+    .brand-mark {
+      color: #174aa5; font-family: Georgia, serif; font-weight: 900;
+      font-size: 2.45cqw; letter-spacing: -.1cqw; transform: scaleX(.88);
+    }
+    .portrait {
+      position: relative; width: 100%; height: 67%; overflow: hidden;
+      background: linear-gradient(145deg, #263a37, #52615a 48%, #253332);
+      border: .25cqw solid #f5f5f3;
+      box-shadow: inset 0 0 .5cqw #0005;
+    }
+    .portrait img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 40%; }
+    .portrait.photo-fallback::before {
+      content: ""; position: absolute; width: 32%; height: 39%; top: 16%; left: 34%;
+      border-radius: 48% 48% 44% 44%; background: #ddba9c;
+      box-shadow: 0 -1.2cqw 0 .5cqw #25272b;
+    }
+    .portrait.photo-fallback::after {
+      content: ""; position: absolute; width: 65%; height: 48%; top: 55%; left: 17%;
+      border-radius: 48% 48% 0 0; background: #b62c42;
+      background-image: repeating-linear-gradient(90deg, transparent 0 12%, #f2d5cc 12% 15%, transparent 15% 30%), repeating-linear-gradient(0deg, transparent 0 18%, #352c32 18% 22%, transparent 22% 42%);
+    }
+    .id-line { height: .4%; width: 70%; margin: 4% auto 0; background: #d9d9d9; border-radius: 50%; }
+
+    .contact-note {
+      position: absolute; z-index: 8;
+      left: 6.4%; top: 37.3%; width: 33.3%; height: 10.8%;
+      padding: 1.3% 1.8% 1.1%;
+      transform: rotate(-.2deg);
+      background:
+        repeating-linear-gradient(0deg, rgba(128,110,34,.12) 0 1px, transparent 1px 22%),
+        linear-gradient(100deg, #f4df75, #ffed91 45%, #f6df70);
+      box-shadow: .3cqw .8cqw .85cqw #57451f36, inset 0 1px 1px #fff8;
+      color: #1b2430;
+    }
+    .contact-note h2 {
+      font: 700 2.05cqw 'Montserrat', sans-serif; margin: 0 0 1.4%; color: #193b8c;
+    }
+    .contact-row {
+      display: grid; grid-template-columns: 8% 1fr; align-items: center; gap: 2%;
+      padding: .7% 0; border-top: 1px solid rgba(140,117,42,.25);
+      font-size: 1.34cqw; font-weight: 500; line-height: 1.25; text-align: right;
+    }
+    .contact-row svg { width: 1.55cqw; height: 1.55cqw; stroke: #5d5f50; fill: none; stroke-width: 1.8; }
+
+    /* About page and notebook decorations */
+    .about-title {
+      position: absolute; z-index: 11; top: 4.1%; right: 5.3%;
+      width: 45.3%; height: 8.2%; display: flex; align-items: center;
+      padding: 0 3.5%; color: white; background: linear-gradient(100deg, #0865cb, #0056ae);
+      box-shadow: 0 .5cqw .65cqw #0002, inset 0 1px #ffffff40;
+      transform: rotate(-.9deg);
+      font: 700 6.1cqw 'Montserrat', sans-serif; letter-spacing: -.18cqw;
+      text-transform: lowercase;
+    }
+    .about-sheet {
+      position: absolute; z-index: 1;
+      left: 36.2%; top: 18.0%; width: 55.8%; height: 31.3%;
+      padding: 8.1% 4.5% 2.2% 7.5%;
+      background:
+        linear-gradient(90deg, transparent 0 97%, rgba(214,204,180,.42) 97% 98%, transparent 98%),
+        repeating-linear-gradient(0deg, transparent 0 3.2cqw, rgba(150,157,168,.055) 3.2cqw 3.28cqw),
+        #fff;
+      border: 1px solid #e7e4df;
+      transform: rotate(-1.1deg);
+      box-shadow: .8cqw 1.2cqw 1.4cqw rgba(60,48,25,.2), 0 0 0 .4cqw #fff9;
+      clip-path: polygon(0 1%, 96% 0, 98% 4%, 100% 3%, 99.4% 10%, 100% 18%, 99.3% 28%, 100% 39%, 99.2% 50%, 100% 61%, 99.4% 74%, 100% 86%, 98.7% 99%, 0 100%);
+    }
+    .spiral-strip {
+      position: absolute; z-index: 6; top: 18.7%; left: 38%; width: 52%; height: 2.7%;
+      background: radial-gradient(circle at 1.15cqw 50%, #f5edd9 0 .58cqw, #d6c9aa .65cqw .83cqw, transparent .9cqw) 0 0 / 4.3cqw 100% repeat-x;
+      filter: drop-shadow(0 1px 0 #b7a98b);
+      pointer-events: none;
+    }
+    .paper-hole-line {
+      position: absolute; z-index: 5; left: 39%; top: 20.2%; width: 50.2%; height: .55%;
+      background: #e2d6b7; border-radius: 50%;
+    }
+    .intro-small {
+      position: absolute; top: 24.2%; left: 45.2%; z-index: 4;
+      color: #274c99; font-size: 1.3cqw; line-height: 1.1;
+    }
+    .intro-small .hello { font: 600 2.1cqw 'Caveat', cursive; display: block; margin-left: 2%; }
+    .intro-small .name-tag { display: block; border: 1px solid #7c8493; font-size: .82cqw; padding: 2px; width: 5.2cqw; letter-spacing: .07cqw; }
+    .about-name {
+      position: absolute; z-index: 4; top: 23.7%; left: 51.8%; width: 38.5%;
+      margin: 0; color: #234aa0;
+      font: 700 5.1cqw 'Montserrat', sans-serif; letter-spacing: -.22cqw; line-height: 1.15;
+      white-space: nowrap;
+    }
+    .about-bio {
+      position: absolute; z-index: 4; left: 44.2%; top: 29.8%; width: 43.9%;
+      color: #66696c; font-size: 1.14cqw; line-height: 1.48; text-align: justify;
+    }
+    .about-bio p { margin: 0 0 .7em; white-space: pre-line; }
+    .paperclip-yellow {
+      position: absolute; z-index: 12; top: 25%; right: 5.6%; width: 5.7%; height: 4.1%;
+      opacity: .86; background: linear-gradient(90deg, #f6e45b, #fff17a 40%, #e8d240);
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 76%, 70% 100%, 20% 100%, 0 83%);
+      filter: drop-shadow(1px 2px 1px #0003);
+      transform: rotate(3deg);
+    }
+    .mood-tabs {
+      position: absolute; z-index: 15; right: 4.3%; top: 33.1%; width: 11.3%;
+      display: flex; flex-direction: column; gap: .7cqw; transform: rotate(-.7deg);
+    }
+    .mood-tab {
+      min-height: 3.1cqw; display: grid; place-items: center;
+      color: #ffffffbd; font: 600 1.8cqw 'Caveat', cursive;
+      box-shadow: 0 .35cqw .5cqw #0002, inset 0 1px #ffffff65;
+    }
+    .mood-tab.blue { background: linear-gradient(90deg, #1677ce, #56b3ef); }
+    .mood-tab.orange { background: linear-gradient(90deg, #f17d22, #f99d3f); }
+    .mood-tab.yellow { background: linear-gradient(90deg, #f5d947, #ffec82); color: #9a8439; }
+    .contact-sticky {
+      position: absolute; z-index: 14; left: 45.7%; top: 42.3%; width: 25.4%; height: 4.1%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(100deg, #fff06c, #ffe45a);
+      box-shadow: 0 .5cqw .8cqw #0002;
+      transform: rotate(-2.5deg);
+      color: #397a40; font: 600 2.05cqw 'Caveat', cursive;
+      white-space: nowrap;
+    }
+    .globe-sticker {
+      position: absolute; z-index: 14; top: 41.4%; left: 74.3%; width: 7.7%; aspect-ratio: 1;
+      display: grid; place-items: center; border-radius: 50%;
+      border: .3cqw solid #dae8eb;
+      background: radial-gradient(circle at 30% 23%, #fff, #99d1db 30%, #3b9daf 70%, #f8fbf8 72%);
+      box-shadow: .35cqw .5cqw .7cqw #0003, inset .15cqw .15cqw .3cqw #fff;
+      transform: rotate(14deg);
+    }
+    .globe-sticker svg { width: 76%; height: 76%; filter: drop-shadow(0 1px 1px #fff8); }
+    .passion-note {
+      position: absolute; z-index: 14; top: 44.4%; left: 82.3%; width: 9%;
+      color: #cb9d60; font: 600 1.65cqw 'Caveat', cursive; line-height: .95; transform: rotate(-8deg);
+    }
+
+    /* Blue portfolio ribbon */
+    .ribbon {
+      position: absolute; z-index: 20; left: 3.7%; top: 50.1%; width: 91.4%; height: 3.6%;
+      display: flex; align-items: center; justify-content: space-around;
+      background: linear-gradient(180deg, #214fb3, #113a96);
+      color: #fff; font: 600 2.15cqw 'Montserrat', sans-serif; white-space: nowrap;
+      box-shadow: 0 .6cqw .85cqw #0003;
+      clip-path: polygon(1.8% 0, 100% 0, 100% 100%, 0 100%, 1.7% 66%, 0 45%);
+    }
+    .ribbon span { text-shadow: 0 1px 1px #0002; }
+    .ribbon .star { font-size: 2.2cqw; color: #d9e6ff; margin: 0 1.1%; }
+
+    /* Clipboard, resume sheet, and metal lever clip */
+    .clipboard {
+      position: absolute; z-index: 1; left: 7.0%; top: 55.0%; width: 88.5%; height: 41.9%;
+      background: linear-gradient(120deg, #e3c869, #f4dfa0 44%, #e4c66b);
+      border-radius: 1.6cqw 1.1cqw 2.6cqw 1cqw;
+      box-shadow: .8cqw 1.3cqw 1.5cqw #4b3d2860, inset .35cqw .15cqw .6cqw #fff9, inset -.4cqw -.6cqw .7cqw #92763b57;
+      transform: rotate(-.25deg);
+    }
+    .clipboard::before {
+      content: ""; position: absolute; inset: 1.3% 2.2% 2.4% 2.2%;
+      background: #252627; border-radius: 1.8cqw;
+      box-shadow: inset 0 0 .6cqw #000, .1cqw .25cqw .4cqw #0006;
+    }
+    .resume-base {
+      position: absolute; z-index: 2; left: 10.0%; top: 55.8%; width: 43.5%; height: 39.1%;
+      padding: 3.2% 2.3% 2.4%; background: #fff;
+      box-shadow: inset 0 0 .9cqw #e8e8e8, 0 .2cqw .5cqw #0002;
+      transform: rotate(-.1deg);
+    }
+    .resume-base::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent 0 4.1cqw, #e3e8f0 4.1cqw 4.17cqw);
+      opacity: .27;
+    }
+    .metal-clip {
+      position: absolute; z-index: 9; left: 7.6%; top: 65.7%; width: 6.5%; height: 15.8%;
+      border: .75cqw solid #767879; border-right-color: #33383a; border-left-color: #d5d5d1;
+      border-radius: .8cqw; background: linear-gradient(90deg, #bfc1bf, #f4f1e7 32%, #787d7e 44%, #dddcd3 56%, #858889);
+      box-shadow: .35cqw .45cqw .5cqw #0004, inset 0 0 .45cqw #fff;
+    }
+    .metal-clip::before {
+      content: ""; position: absolute; left: -65%; top: 31%; width: 66%; height: 38%;
+      border: .58cqw solid #8a8d8e; border-right-color: #e1e2df; border-radius: 45% 0 0 45%;
+      background: linear-gradient(90deg, #c3c3bd, #fff, #838788);
+    }
+    .metal-clip::after {
+      content: ""; position: absolute; left: 15%; top: 5%; width: 68%; height: 89%;
+      border: .35cqw solid #55595a; border-top-color: #eee; border-radius: .3cqw;
+      box-shadow: inset 0 0 .3cqw #fff;
+    }
+
+    .resume-section-title {
+      position: relative; z-index: 1; display: table; margin: 0 0 2.4%; padding: .3% 2.7%;
+      background: var(--yellow); color: #1946a4; font: 800 2.65cqw 'Montserrat', sans-serif;
+      box-shadow: .15cqw .2cqw .25cqw #0001; line-height: 1.16;
+    }
+    .education-list { position: relative; z-index: 1; margin: 0 0 5.8%; padding: 0; list-style: none; }
+    .education-list li {
+      display: grid; grid-template-columns: 18% 1fr; gap: 2.7%; align-items: start;
+      min-height: 3.55cqw; margin-bottom: 2.4%; font-size: 1.28cqw; line-height: 1.25;
+    }
+    .year { color: #7aaed0; font-weight: 700; text-decoration: underline; text-underline-offset: .25cqw; }
+    .education-list strong { display: block; font-weight: 700; }
+    .education-list small { display: block; font-size: 1.02cqw; color: #777; margin-top: .25%; }
+    .skill-head { margin-top: 1%; }
+    .skill-clouds {
+      position: relative; z-index: 1; height: 10.8%; min-height: 7.1cqw; margin-top: 1.6%;
+    }
+    .skill-tag {
+      position: absolute; display: grid; place-items: center; text-align: center;
+      font-weight: 600; line-height: 1.05; box-shadow: .18cqw .3cqw .5cqw #0002;
+    }
+    .skill-tag.typography {
+      left: 29%; top: 0; width: 40%; height: 38%; background: #f4d34d;
+      border-radius: 1.2cqw .4cqw 1.3cqw .3cqw; transform: rotate(-2deg); font-size: 1.65cqw;
+    }
+    .skill-tag.photo {
+      left: 13%; top: 40%; width: 39%; height: 43%; color: white; background: #ca2526;
+      border-radius: 50%; transform: rotate(-6deg); font: 600 1.35cqw 'Caveat', cursive;
+    }
+    .skill-tag.layout {
+      left: 48%; top: 43%; width: 44%; height: 48%; background: #f8fafb;
+      border: 1px solid #ddd; clip-path: polygon(0 4%, 100% 0, 96% 78%, 86% 100%, 6% 90%);
+      font-size: 1.5cqw; color: #4a5062;
+    }
+    .skill-tag.learning {
+      left: 69%; top: 0; width: 19%; height: 46%; color: white; background: #35ad62;
+      clip-path: polygon(50% 0, 96% 15%, 100% 76%, 52% 100%, 0 74%, 7% 18%);
+      font: 600 1.15cqw 'Caveat', cursive; transform: rotate(7deg);
+    }
+    .software-title { margin-top: 4.8%; }
+    .software-list {
+      position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 4%; margin: 2.8% 2.5% 0;
+    }
+    .software { text-align: center; font-size: 1.05cqw; color: #8a8a8a; }
+    .software-icon {
+      margin: 0 auto 7%; width: 4.5cqw; height: 4.5cqw; display: grid; place-items: center;
+      border: 1px solid #e9e9e9; background: linear-gradient(145deg, #f8f8f8, #ebebeb);
+      box-shadow: 0 .25cqw .4cqw #0001; font: 700 2.35cqw 'Montserrat', sans-serif;
+    }
+    .software:nth-child(1) .software-icon { color: #de8b1c; }
+    .software:nth-child(2) .software-icon { color: #2087c8; }
+    .software:nth-child(3) .software-icon { color: #8a76bd; }
+    .software:nth-child(4) .software-icon { color: #d45771; }
+
+    /* Overlapping experience page */
+    .experience-paper {
+      position: absolute; z-index: 8; left: 52.8%; top: 56.8%; width: 40.2%; height: 40.1%;
+      padding: 4.8% 3.3% 4.8%;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 4.2cqw, rgba(126,149,179,.085) 4.2cqw 4.27cqw),
+        linear-gradient(100deg, #fff, #fffefb 78%, #f2f1ec);
+      box-shadow: .55cqw .9cqw 1cqw #0003, inset .15cqw .1cqw .4cqw #fff;
+      transform: rotate(.35deg);
+      clip-path: polygon(0 0, 100% 0, 100% 93%, 95% 98%, 92% 100%, 0 100%);
+    }
+    .experience-paper::after {
+      content: ""; position: absolute; z-index: 2; right: 0; bottom: 0; width: 18%; height: 10%;
+      background: linear-gradient(135deg, #f4f2e9, #fff 55%, #dbd8d0);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      filter: drop-shadow(-.3cqw -.3cqw .25cqw #0002);
+    }
+    .experience-title {
+      margin: 0 0 2.1%; color: #1b4b9b; font: 700 3.2cqw 'Montserrat', sans-serif;
+      position: relative; z-index: 1;
+    }
+    .green-sticker {
+      position: absolute; right: 15%; top: 1.2%; z-index: 4; width: 10%; height: 7%;
+      color: #50a52a; transform: rotate(-24deg);
+    }
+    .green-sticker svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 3; fill: none; filter: drop-shadow(1px 1px 0 #d1ebbd); }
+    .yellow-arrow {
+      position: absolute; z-index: 12; right: -.7%; top: 21.1%; width: 12.5%; height: 3.1%;
+      background: #fff000; clip-path: polygon(0 50%, 42% 0, 100% 0, 100% 100%, 42% 100%);
+      transform: rotate(-4deg); filter: drop-shadow(0 .3cqw .25cqw #0003);
+    }
+    .job { position: relative; z-index: 1; margin-bottom: 2.5%; }
+    .job-head { display: flex; align-items: baseline; justify-content: space-between; gap: 2%; }
+    .job-head h3 { margin: 0; font: 700 1.75cqw 'Montserrat', sans-serif; }
+    .job-date { flex-shrink: 0; color: #d7ae4c; font-size: 1.3cqw; font-weight: 600; }
+    .job-subtitle { margin: .5% 0 .4%; font-size: 1.21cqw; line-height: 1.25; font-weight: 500; }
+    .job-desc { margin: 0; color: #737373; font-size: 1.06cqw; line-height: 1.3; }
+    .client-card {
+      padding: 1.8% 2.3%; margin-top: 1.5%; min-height: 7.5%;
+      font-size: 1.04cqw; line-height: 1.27; color: #62666c;
+      box-shadow: 0 .15cqw .3cqw #0001;
+    }
+    .client-card strong { display: block; margin-bottom: .6%; font-size: 1.32cqw; color: #3a5b97; }
+    .client-card.panasonic { background: #fff0a2; }
+    .client-card.viettel { background: #f3a9c8; }
+    .client-card.t3h { background: #a7e1f3; }
+    .experience-dots { color: #9ea1a6; margin: 1.5% 0; letter-spacing: .4cqw; font-size: 1.1cqw; }
+    .job.blue-peach { margin-top: 4%; }
+    .job.blue-peach .job-date { color: #6eafd0; }
+
+    /* Natural fold/tape and small paper details */
+    .yellow-tape {
+      position: absolute; z-index: 10; left: 2.7%; top: 46.3%; width: 13%; height: 1.5%;
+      background: linear-gradient(180deg, #ffef9a, #d6c36d); opacity: .7; transform: rotate(-5deg);
+      box-shadow: 0 .2cqw .3cqw #0002;
+    }
+    .paper-shadow {
+      position: absolute; z-index: 0; left: 4.6%; top: 20%; width: 33%; height: 27%;
+      background: #d9c16d; transform: rotate(-2deg); opacity: .8;
+      box-shadow: .3cqw .4cqw .6cqw #0002;
+    }
+
+    @media (max-width: 680px) {
+      .portfolio {
+        width: 100%; aspect-ratio: auto; min-height: 100vh; overflow: hidden;
+        display: flex; flex-direction: column; gap: 18px; padding: 16px 12px 26px;
+      }
+      .portfolio::before { inset: 0; }
+      .lanyard-loop, .lanyard-strap, .metal-hook, .paper-shadow, .yellow-tape { display: none; }
+      .about-title, .id-card, .contact-note, .about-sheet, .spiral-strip, .paper-hole-line,
+      .intro-small, .about-name, .about-bio, .paperclip-yellow, .mood-tabs, .contact-sticky,
+      .globe-sticker, .passion-note, .ribbon, .clipboard, .resume-base, .metal-clip,
+      .experience-paper { position: relative; inset: auto; left: auto; right: auto; top: auto;
+        width: 100%; height: auto; transform: none; clip-path: none; }
+      .about-title { order: 0; min-height: 66px; padding: 12px 18px; font-size: 34px; margin-bottom: 0; }
+      .id-card { order: 1; width: min(85%, 330px); height: 360px; align-self: center; padding: 12px; border-width: 4px; border-radius: 18px; transform: rotate(-2deg); }
+      .id-top { height: 58px; margin: 0 0 8px; }
+      .brand-mark { font-size: 24px; }
+      .portrait { height: 250px; border-width: 2px; }
+      .id-line { height: 3px; }
+      .contact-note { order: 2; width: 95%; min-height: 155px; margin: -28px auto 0; padding: 12px 14px; }
+      .contact-note h2 { font-size: 22px; margin-bottom: 6px; }
+      .contact-row { font-size: 12px; padding: 6px 0; grid-template-columns: 24px 1fr; gap: 7px; }
+      .contact-row svg { width: 16px; height: 16px; }
+      .about-sheet { display: none; }
+      .spiral-strip, .paper-hole-line, .paperclip-yellow { display: none; }
+      .intro-small { order: 3; display: block; font-size: 12px; margin: 2px 4px 0; }
+      .intro-small .hello { font-size: 21px; }
+      .intro-small .name-tag { font-size: 9px; width: 54px; }
+      .about-name { order: 4; width: 100%; font-size: clamp(29px, 8vw, 42px); white-space: normal; margin: 2px 0 0; color: #234aa0; }
+      .about-bio { order: 5; font-size: 12px; line-height: 1.6; text-align: left; }
+      .mood-tabs { display: flex; flex-direction: row; order: 6; gap: 6px; width: 100%; margin-top: 0; }
+      .mood-tab { flex: 1; min-height: 38px; font-size: 17px; }
+      .contact-sticky { order: 7; align-self: flex-start; width: auto; min-height: 40px; padding: 8px 14px; font-size: 21px; margin: -4px 0 0 4px; }
+      .globe-sticker { order: 8; position: relative; width: 52px; height: 52px; right: auto; margin: -2px 14px 0 0; align-self: flex-end; }
+      .passion-note { order: 9; align-self: flex-end; width: 90px; font-size: 17px; margin: -4px 0 4px; }
+      .ribbon { order: 10; min-height: 48px; height: auto; padding: 10px 8px; white-space: normal; flex-wrap: wrap; gap: 5px; font-size: 11px; clip-path: none; }
+      .ribbon .star { font-size: 13px; margin: 0; }
+      .clipboard { display: none; }
+      .resume-base { order: 11; width: 100%; padding: 22px 15px; min-height: 590px; }
+      .metal-clip { display: none; }
+      .resume-section-title { font-size: 24px; padding: 3px 8px; margin-bottom: 12px; }
+      .education-list li { grid-template-columns: 64px 1fr; gap: 9px; min-height: 48px; font-size: 12px; margin-bottom: 12px; }
+      .education-list small { font-size: 10px; }
+      .skill-clouds { height: 125px; min-height: 125px; }
+      .skill-tag.typography { font-size: 15px; border-radius: 9px; }
+      .skill-tag.photo { font-size: 14px; }
+      .skill-tag.layout { font-size: 13px; }
+      .skill-tag.learning { font-size: 12px; }
+      .software-title { margin-top: 16px; }
+      .software-list { margin: 14px 8px 0; gap: 9px; }
+      .software { font-size: 10px; }
+      .software-icon { width: 42px; height: 42px; font-size: 21px; margin-bottom: 7px; }
+      .experience-paper { order: 12; z-index: 3; padding: 22px 18px 36px; min-height: 560px; margin: -4px 3px 0 18px; width: calc(100% - 21px); box-shadow: 0 8px 16px #0002; }
+      .yellow-arrow { display: none; }
+      .experience-title { font-size: 29px; margin-bottom: 12px; }
+      .green-sticker { top: 10px; right: 38px; width: 34px; height: 34px; }
+      .yellow-arrow { right: -9px; top: 155px; width: 45px; height: 24px; }
+      .job { margin-bottom: 12px; }
+      .job-head h3 { font-size: 14px; }
+      .job-date { font-size: 10px; }
+      .job-subtitle { font-size: 11px; margin: 5px 0; }
+      .job-desc, .client-card { font-size: 10px; line-height: 1.4; }
+      .client-card { padding: 9px; margin-top: 7px; }
+      .client-card strong { font-size: 12px; margin-bottom: 4px; }
+      .experience-dots { font-size: 13px; margin: 10px 0; }
+      .job.blue-peach { margin-top: 24px; }
+    }
+
+    @media (min-width: 681px) {
+      .portfolio { box-shadow: 0 8px 30px rgba(61,49,28,.06); }
+    }
+  </style>
+</head>
+<body>
+  <main class="portfolio" aria-label="Scrapbook-style graphic designer portfolio">
+    <div class="lanyard-loop" aria-hidden="true"></div>
+    <div class="lanyard-strap" aria-hidden="true"></div>
+    <div class="metal-hook" aria-hidden="true"></div>
+    <div class="paper-shadow" aria-hidden="true"></div>
+
+    <section class="id-card" aria-label="Profile ID card">
+      <div class="id-top"><span class="brand-mark">TNI Negara Indonesia</span></div>
+      <div class="portrait" id="portrait-frame">
+        <!-- Replace {{PROFILE_PHOTO}} with a local image path or image URL. -->
+        <img src="tentara.jpeg" alt="" onerror="this.remove();this.parentElement.classList.add('photo-fallback');" />
+      </div>
+      <div class="id-line"></div>
+    </section>
+
+    <section class="contact-note" aria-label="Contact information">
+      <h2>Contact</h2>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="1.5"/><path d="M10 18.5h4"/></svg>
+        <span>+62 896 0329 2156</span>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg>
+        <span>wahyudhacahyo@gmail.com</span>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2.5v5M17 2.5v5M3 10h18"/></svg>
+        <span>9/8/2010</span>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span>Indonesia, Sumatra</span>
+      </div>
+    </section>
+
+    <div class="about-title">about me</div>
+    <div class="spiral-strip" aria-hidden="true"></div>
+    <div class="paper-hole-line" aria-hidden="true"></div>
+    <section class="about-sheet" aria-label="About me notebook page"></section>
+    <div class="intro-small"><span class="hello">Hello</span><span class="name-tag">i'am a</span></div>
+    <!-- Customize this page by editing TEMPLATE_VALUES near the bottom of this file. -->
+    <h1 class="about-name"> WAHYUDHA CAHYO ANGGORO SETO</h1>
+    <div class="about-bio">
+      <p class="bio-copy">I am Wahyudha, a results oriented individual who is highly committed and responsible in completing tasks. I am capable of adapting to challenges, open to new experiences, and possess a strong desire to continuously learn and develop myself. I place great value on honesty, teamwork, and effective communication to achieve optimal work results.</p>
+    </div>
+    <div class="paperclip-yellow" aria-hidden="true"></div>
+    <div class="mood-tabs" aria-label="Personal qualities">
+      <div class="mood-tab blue">Creative</div>
+      <div class="mood-tab orange">Professional</div>
+      <div class="mood-tab yellow">Motivated</div>
+    </div>
+    <div class="contact-sticky">Contact For More Information..!!</div>
+    <div class="globe-sticker" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#f4f8e7" stroke-width="2.2"><circle cx="32" cy="32" r="25"/><path d="M7 32h50M32 7c-9 8-12 17-12 25s3 17 12 25M32 7c9 8 12 17 12 25s-3 17-12 25M11 19h42M11 45h42"/><path d="m17 15 7 3 4 8-5 5 3 8-5 4-4-9-3-6 4-7M41 18l5 5-2 7 7 4-4 7-8-3-2-9 4-4Z" fill="#79b55a" stroke="#e8f0da"/></svg>
+    </div>
+    <div class="passion-note">Work with<br>passion</div>
+
+    <div class="yellow-tape" aria-hidden="true"></div>
+    <div class="ribbon" aria-label="Graphic Designer ribbon">
+      <span>Urban Runner</span><span class="star">☆</span>
+      <span>Geodetic Student</span><span class="star">☆</span>
+      <span>AI Assisted Developer</span>
+    </div>
+
+    <div class="clipboard" aria-hidden="true"></div>
+    <div class="metal-clip" aria-hidden="true"></div>
+
+    <section class="resume-base" aria-label="Education, skills, and software">
+      <h2 class="resume-section-title">Education</h2>
+      <ul class="education-list">
+        <li><span class="year">2022</span><span><strong>SNDN 03</strong><small>Elementary School</small></span></li>
+        <li><span class="year">2021</span><span><strong>RABBI RADHIA</strong><small>Private Junior High School</small></span></li>
+        <li><span class="year">2025</span><span><strong>SMKN 2 Kota Bengkulu</strong><small>Vocational High School</small></span></li>
+      </ul>
+
+      <h2 class="resume-section-title skill-head">Skill</h2>
+      <div class="skill-clouds">
+        <div class="skill-tag typography">Typography</div>
+        <div class="skill-tag photo">Land<br>&amp; Surevey</div>
+        <div class="skill-tag layout">Layout<br>&amp; composition</div>
+        <div class="skill-tag learning">Always<br>learning</div>
+      </div>
+
+      <h2 class="resume-section-title software-title">Software</h2>
+      <div class="software-list">
+        <div class="software"><div class="software-icon">CL</div><span>Claude</span></div>
+        <div class="software"><div class="software-icon">Q</div><span>Qwen</span></div>
+        <div class="software"><div class="software-icon">f</div><span>Facebook</span></div>
+        <div class="software"><div class="software-icon">YT</div><span>YouTube</span></div>
+      </div>
+    </section>
+
+    <section class="experience-paper" aria-label="Work experience">
+      <div class="green-sticker" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path d="M6 19 20 5h18l5 5v19L28 44H10l-5-5V21Z"/><path d="m14 18 7-7h11l5 5v11L26 38H15l-3-3V24l5-5h10l3 3v7l-5 5h-6"/></svg>
+      </div>
+      <h2 class="experience-title">Experience</h2>
+      <div class="job">
+        <div class="job-head"><h3>Freelancer</h3><span class="job-date">2023 - 2025</span></div>
+        <p class="job-subtitle">Position - Work as a collaborator. I have worked and collaborated with clients like:</p>
+        <div class="client-card panasonic"><strong>Parking Attendants</strong>Collaborate with community organizations representing the unemployed to create job opportunities at all Alfamart and Indomaret outlets that have parking areas.</div>
+        <div class="client-card viettel"><strong>Viettel AI</strong>Collaborate with the communications department to real produce graphic publications for projects: “Kaderisasi mahasiswa teknik elektro A12 2023..”</div>
+        <div class="client-card t3h"><strong>Negotation</strong>Negotiating with two fools who are fighting, while continuing to pit them against each other so that they do not stop brawling and harming one another</div>
+      </div>
+      <div class="experience-dots">• • •</div>
+      <div class="job blue-peach">
+        <div class="job-head"><h3>Unemployment</h3><span class="job-date">12.2022 - now </span></div>
+        <p class="job-subtitle">Position - Environmental observer</p>
+        <p class="job-desc">Observe your surroundings and look for tasks you can take on so that you aren't left idle. This kind of work is truly engaging, but it requires a pure heart, patience, and a lack of resentment because in moments when there is nothing to observe, the whispers of the devil may arise, inciting trouble and clouding your mind.</p>
+      </div>
+    </section>
+    <div class="yellow-arrow" aria-hidden="true"></div>
+  </main>
+  <script>
+    // Change these values to customize the portfolio. Keep the keys as they are.
+    const TEMPLATE_VALUES = {
+      PROFILE_PHOTO: "profile.jpg", // Put profile.jpg in the same folder, or use an image URL.
+      YOUR_NAME: "wahyudha",
+      YOUR_PHONE: "+62 896 0329 9156",
+      YOUR_EMAIL: "pqhal.work@gmail.com",
+      YOUR_DOB: "10 / 07 / 2000",
+      YOUR_LOCATION: "Long Bien, Hanoi",
+      YOUR_BIO: "I was exposed to graphic design since I was in the university and quickly realized that this is my passion. With 2 years of experience in graphic design, I have had the opportunity to participate in many projects, from designing social media posts, graphic publications for events,...\n\nI am always constantly learning and updating new trends to improve my skills and create quality design products. I look forward to accompanying the business, contributing my creativity to create practical and impressive values.",
+      EDUCATION_1: "Design Anthropology School",
+      EDUCATION_2: "The Futur",
+      EDUCATION_3: "University of Transport and Communications (UTC)"
+    };
+
+    // Replace text placeholders and attribute placeholders with the values above.
+    const allElements = document.querySelectorAll("*");
+    for (const element of allElements) {
+      for (const attribute of Array.from(element.attributes || [])) {
+        let updatedValue = attribute.value;
+        for (const [key, value] of Object.entries(TEMPLATE_VALUES)) {
+          updatedValue = updatedValue.replaceAll("{{" + key + "}}", value);
+        }
+        if (updatedValue !== attribute.value) element.setAttribute(attribute.name, updatedValue);
+      }
+    }
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    for (const node of textNodes) {
+      let updatedText = node.nodeValue;
+      for (const [key, value] of Object.entries(TEMPLATE_VALUES)) {
+        updatedText = updatedText.replaceAll("{{" + key + "}}", value);
+      }
+      if (updatedText !== node.nodeValue) node.nodeValue = updatedText;
+    }
+  </script>
+</body>
+</html>
